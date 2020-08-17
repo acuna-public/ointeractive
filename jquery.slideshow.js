@@ -21,7 +21,7 @@
     
     options = $.extend ({
       
-      'slideTime': 500,
+      'slideTime': 700,
       'waitTime': 5000,
       'infinity': true,
       'hoverStop': false,

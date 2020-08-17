@@ -49,10 +49,10 @@
         if ($.isFunction (options['url']))
         options['url'] = options.url ();
         else
-        options['url'] = $(this).attr ('href');
+        options['url'] = $(this).attr ('href'); // Не self!
         
         options.init (self);
-        $.page (self, options);
+        $.page (self, this, options);
         
       } else window.location = options['url'];
       
@@ -62,9 +62,9 @@
     
   };
   
-  $.page = function (elem, options) {
+  $.page = function (elem, self, options) {
     
-    $._page (elem, options);
+    //$._page (elem, options);
     
     if ($.pushState) {
       
@@ -92,16 +92,14 @@
         
       };
       
-      //showProgress = false;
-      
       $.prettyAjax (options['url'], options['data'], function (data) {
         
-        var elem = $(data).find (options['container']); // Находим контейнер в тексте ответа
-        
-        if ($.trim (data) && /<html/i.test (data)) {
+        if ($.trim (data) && /<html/i.test (data)) { // Ошибок на странице нет
           
-          $(options['container']).html (elem.html ()); // И перекрываем старый его контентом
-          options.success (elem);
+          var container = $(data).find (options['container']); // Находим контейнер в тексте ответа
+          
+          $(options['container']).html (container.html ()); // И перекрываем его новым контентом
+          options.success (self, container);
           
           if (options['scrollTime'] > 0)
           $.scrollTo ({ 'time':options['scrollTime'] });
@@ -133,8 +131,8 @@
           $(window).bind ('popstate', function (event) {
             
             options['url'] = window.location.href;
-            $.page (elem, options);
-            
+            $.page (container, options);
+            alert ();
           });
           
           //if ($.inArray ('state', $.event.props) < 0)

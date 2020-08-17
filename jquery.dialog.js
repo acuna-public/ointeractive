@@ -29,7 +29,7 @@
         'open': function () {},
         'class': 'pretty',
         'width': 460,
-        'opacity': 0.9,
+        'opacity': 0.7,
         'opacityColor': '#000',
         'draggable': false,
         'titleClose': true,
@@ -79,8 +79,12 @@
       var elem = $('#' + options['elem']);
       
       elem
-      .append ('<div class="dialog-header">' + options['title'] + '</div>')
-      .append ('<div class="dialog-content ' + options['type'] + '">' + options['content'] + '</div>');
+        .append ('<div class="dialog-header">' + options['title'] + '\
+  <div class="close-button">\
+    <div class="ui-widget-header ui-icon ui-icon-closethick"></div>\
+  </div>\
+</div>')
+        .append ('<div class="dialog-content ' + options['type'] + '">' + options['content'] + '</div>');
       
       var tabs = elem.find ('.ui-tabs-content');
       
@@ -194,7 +198,7 @@
       if (options['subClass']) elem.addClass (options['subClass']);
       
       if (options['titleClose'])
-      elem.find ('.dialog-header').click (function () {
+      elem.find ('.dialog-header .close-button').click (function () {
         $.dialogClose (options);
       });
       
@@ -240,7 +244,7 @@
         elem.find ('.dialog-content').css ({ 'height':options['height'] + 'px' });
         
         elem.css ({
-          'margin-top': ($(window).scrollTop () - (elem.outerHeight () / 2)) + 'px',
+          'margin-top': ($(window).scrollTop () - (elem.outerHeight () / 2)) + 'px'
         });
         
       }

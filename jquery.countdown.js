@@ -27,9 +27,9 @@
       }, options);
       
       var
-      days = 24 * 60 * 60,
-      hours  = 60 * 60,
-      minutes  = 60;
+        days = 24 * 60 * 60,
+        hours = 60 * 60,
+        minutes = 60;
       
       $(this).each (function () {
         

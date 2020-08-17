@@ -1,7 +1,7 @@
 /*
  checkField 1.0 - jQuery plugin
  written by O! Interactive, Acuna
-  'http'://ointeractive.ru
+  https://ointeractive.ru
  
  Copyright (c) 2015 O! Interactive, Acuna (http://ointeractive.ru)
  Dual licensed under the MIT (MIT-LICENSE.txt)
